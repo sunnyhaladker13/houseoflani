@@ -128,14 +128,15 @@ img {
 
 /* Header - Minimalist */
 .site-header {
-    padding: var(--spacing-md) 0;
+    padding: 1.5rem 0; /* Reduced padding for a tighter header */
     position: fixed;
     width: 100%;
     top: 0;
-    background-color: rgba(253, 252, 248, 0.9); /* Matches bg-light */
+    background-color: rgba(253, 252, 248, 0.95); /* Slightly more opaque */
     backdrop-filter: blur(12px);
     z-index: 1000;
     transition: padding 0.3s ease;
+    border-bottom: 1px solid rgba(2, 67, 61, 0.05);
 }
 
 .header-inner {
@@ -146,7 +147,7 @@ img {
 
 .logo {
     display: block;
-    width: 160px; /* Adjust width as needed */
+    width: 90px; /* Reduced from 160px for better proportion in fixed header */
     transition: opacity 0.3s ease;
 }
 
@@ -240,7 +241,7 @@ img {
 .hero-content {
     color: var(--color-white);
     max-width: 900px;
-    padding-top: 10vh;
+    padding-top: 15vh; /* Added padding to account for fixed header */
 }
 
 .hero-title {
