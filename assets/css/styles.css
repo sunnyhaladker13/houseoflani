@@ -12,8 +12,8 @@
     --color-white: #FFFFFF;
 
     /* Typography */
-    --font-heading: 'Playfair Display', serif;
-    --font-body: 'Plus Jakarta Sans', sans-serif;
+    --font-heading: 'IvyOra Display', 'Playfair Display', serif;
+    --font-body: 'General Sans', sans-serif;
 
     /* Spacing - Increased for "Breathing Room" */
     --spacing-sm: 1.5rem;
