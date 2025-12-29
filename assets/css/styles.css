@@ -145,28 +145,19 @@ img {
 }
 
 .logo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: var(--font-heading);
-    color: var(--color-teal);
-    text-align: center;
+    display: block;
+    width: 160px; /* Adjust width as needed */
+    transition: opacity 0.3s ease;
 }
 
-.logo-text {
-    font-size: 1.8rem;
-    letter-spacing: 4px; /* Very wide tracking */
-    font-weight: 400;
-    text-transform: uppercase;
+.logo:hover {
+    opacity: 0.8;
 }
 
-.est {
-    font-family: var(--font-body);
-    font-size: 0.6rem;
-    letter-spacing: 4px;
-    margin-top: 8px;
-    opacity: 0.6;
-    text-transform: uppercase;
+.logo-img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 .main-nav ul {
