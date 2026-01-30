@@ -711,6 +711,14 @@ img {
   }
 
   /* Header / Mobile Menu */
+  .site-header {
+    padding: 0.8rem 0;
+  }
+
+  .logo {
+    width: 60px;
+  }
+
   .header-cta {
     display: none;
   }
