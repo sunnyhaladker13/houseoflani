@@ -17,109 +17,197 @@
     />
     <link rel="stylesheet" href="assets/css/styles.css" />
     <style>
-      /* Editorial Video Teaser Styles */
+      /* Hero - Cinematic Setup */
       .hero {
-        /* Override default hero styles for Split Layout */
-        background: var(--color-bg-light) !important; /* Force light bg */
-        height: auto !important;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        padding: 120px 0 var(--spacing-xl);
-      }
-      
-      .hero-bg { display: none; } /* Hide old dark bg */
-
-      .hero-content {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: var(--spacing-md);
-        align-items: center;
-        width: 100%;
-        /* Override previous max-width centering */
-        max-width: 1400px; 
-        color: var(--color-teal) !important; /* Switch text to dark */
-        padding-top: 0 !important;
-      }
-
-      .hero-text {
-        text-align: center;
-        order: 2; /* Text below video on mobile? Or above? Let's keep text top on mobile usually, but visual is nice. Let's do Text 1, Video 2 on mobile to greet them. */
-        order: 1;
-      }
-      
-      .hero-text .hero-title {
-        color: var(--color-teal);
-        font-size: 3.5rem; /* Smaller on mobile */
-      }
-
-      .hero-text .hero-subtitle {
-        color: var(--color-text-light);
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .hero-visual {
-        order: 2;
-        display: flex;
-        justify-content: center;
-      }
-
-      .video-frame {
         position: relative;
-        width: 100%;
-        max-width: 320px; /* Slightly smaller for mobile hero */
-        aspect-ratio: 9/16;
-        border-radius: 999px 999px 0 0; /* Full arch */
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
         overflow: hidden;
-        box-shadow: 0 20px 60px rgba(2, 67, 61, 0.15);
-        transform: translateZ(0);
       }
 
-      .video-frame video {
+      .hero-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        /* Placeholder for your Video Still */
+        background: radial-gradient(circle at center, rgba(2, 67, 61, 0.2), rgba(2, 67, 61, 0.6)),
+          url("assets/Images/hero-still.jpg") no-repeat center center/cover;
+        /* Fallback if image missing */
+        background-color: #02433d; 
+        z-index: -1;
+        transition: transform 8s ease;
+      }
+      
+      /* Subtle zoom effect on the background */
+      .hero:hover .hero-bg {
+        transform: scale(1.05);
+      }
+
+      .hero-content {
+        color: var(--color-white);
+        max-width: 900px;
+        position: relative;
+        z-index: 10;
+        padding-top: 60px; /* Offset for fixed header */
+      }
+
+      .hero-title {
+        font-size: 4rem; /* Mobile base */
+        margin-bottom: var(--spacing-md);
+        text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      }
+      
+      /* Desktop Title Size */
+      @media (min-width: 900px) {
+        .hero-title {
+          font-size: 6rem;
+        }
+      }
+
+      .hero-subtitle {
+        font-size: 1.2rem;
+        margin-bottom: var(--spacing-lg);
+        font-weight: 300;
+        letter-spacing: 0.5px;
+        opacity: 0.95;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      }
+
+      /* Buttons Group */
+      .hero-actions {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      /* Watch Film Button Style */
+      .btn-play {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--color-white);
+        border-color: rgba(255,255,255,0.4);
+        padding-left: 2rem;
+        padding-right: 2rem;
+        background: rgba(255,255,255,0.05);
+        backdrop-filter: blur(5px);
+      }
+
+      .btn-play:hover {
+        background: var(--color-white);
+        color: var(--color-teal);
+        border-color: var(--color-white);
+      }
+
+      .btn-play svg {
+        width: 14px;
+        height: 14px;
+        fill: currentColor;
+        transition: transform 0.3s ease;
+      }
+      
+      .btn-play:hover svg {
+        transform: scale(1.2);
+      }
+
+      /* --- PORTAL VIDEO MODAL --- */
+      .video-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        /* Hidden State */
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        
+        /* Frosted Glass Backdrop */
+        background-color: rgba(2, 67, 61, 0.85); 
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+      }
+
+      .video-modal.is-active {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      /* The Close Button */
+      .video-modal-close {
+        position: absolute;
+        top: 40px;
+        right: 40px;
+        background: none;
+        border: none;
+        color: rgba(255,255,255,0.7);
+        font-family: var(--font-body);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 0.8rem;
+        cursor: pointer;
+        z-index: 20;
+        transition: color 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      
+      .video-modal-close::after {
+        content: '×';
+        font-size: 2rem;
+        line-height: 0.5;
         display: block;
       }
 
-      /* Desktop Split Layout */
-      @media (min-width: 900px) {
-        .hero {
-          height: 100vh !important;
-          padding: 0;
-        }
+      .video-modal-close:hover {
+        color: #fff;
+      }
 
-        .hero-content {
-          grid-template-columns: 1.2fr 1fr; /* Text wider than video */
-          gap: var(--spacing-xl);
-          text-align: left;
-        }
-
-        .hero-text {
-          text-align: left;
-        }
-
-        .hero-text .hero-title {
-          font-size: 5.5rem;
-        }
+      /* The Portal Window (Container) */
+      .video-modal-content {
+        position: relative;
+        width: 100%;
+        height: 85vh; /* Takes up most of height */
+        max-width: 50vh; /* Keeps it portrait proportion roughly 9:16 based on height */
         
-        .hero-text .hero-subtitle {
-          margin-left: 0;
-          margin-right: 0;
-          font-size: 1.25rem;
-        }
+        /* The Sanctuary Arch Shape */
+        border-radius: 500px 500px 0 0;
+        overflow: hidden;
+        
+        /* Entrance Animation */
+        transform: translateY(60px) scale(0.95);
+        opacity: 0;
+        transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        
+        box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+        border: 1px solid rgba(255,255,255,0.1);
+      }
 
-        .hero-visual {
-          justify-content: flex-end;
-          padding-right: var(--spacing-md);
-        }
+      .video-modal.is-active .video-modal-content {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
 
-        .video-frame {
-          max-width: 400px;
-          height: 80vh; /* Tall arch */
-          max-height: 700px;
-        }
+      .video-modal video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
     </style>
   </head>
@@ -148,34 +236,54 @@
     </header>
 
     <main>
-      <!-- Hero Section -->
+      <!-- Hero Section (Classic + Modal) -->
       <section class="hero">
-        <!-- Background removed -->
+        <div class="hero-bg"></div>
         <div class="container hero-content">
-          <div class="hero-text">
-            <h1 class="hero-title">
-              For People Who <i>Take Care</i> of Themselves
-            </h1>
-            <p class="hero-subtitle">
-              A space for intentional living. Where movement, recovery, and
-              nourishment come together to help you find your center.
-            </p>
-            <div class="hero-actions">
-              <a href="#our-space" class="btn btn-primary"
-                >Discover The Sanctuary</a
-              >
-            </div>
-          </div>
-          
-          <div class="hero-visual">
-            <div class="video-frame">
-              <video autoplay muted loop playsinline poster="assets/Images/video-poster.jpg">
-                <source src="assets/video/teaser.M4V" type="video/mp4" />
-              </video>
-            </div>
+          <h1 class="hero-title">
+            For People Who <i>Take Care</i> of Themselves
+          </h1>
+          <p class="hero-subtitle">
+            A space for intentional living. Where movement, recovery, and
+            nourishment come together to help you find your center.
+          </p>
+          <div class="hero-actions">
+            <a href="#our-space" class="btn btn-primary">Discover The Sanctuary</a>
+            
+            <!-- Watch Teaser Button (Triggers Portal) -->
+            <button class="btn btn-outline btn-play" onclick="toggleModal()" aria-label="Watch the film">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              Watch Film
+            </button>
           </div>
         </div>
       </section>
+
+      <!-- Video Portal Modal -->
+      <div class="video-modal" id="videoModal">
+        <button class="video-modal-close" onclick="toggleModal()">Close</button>
+        <div class="video-modal-content">
+          <video id="modalVideo" controls loop playsinline>
+            <source src="assets/video/teaser.M4V" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+
+      <script>
+        function toggleModal() {
+          const modal = document.getElementById('videoModal');
+          const video = document.getElementById('modalVideo');
+          
+          modal.classList.toggle('is-active');
+          
+          if (modal.classList.contains('is-active')) {
+            video.currentTime = 0;
+            video.play();
+          } else {
+            video.pause();
+          }
+        }
+      </script>
 
       <!-- Philosophy / Intro -->
       <section class="philosophy section-padding" id="our-story">
