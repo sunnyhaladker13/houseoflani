@@ -16,6 +16,112 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/css/styles.css" />
+    <style>
+      /* Editorial Video Teaser Styles */
+      .hero {
+        /* Override default hero styles for Split Layout */
+        background: var(--color-bg-light) !important; /* Force light bg */
+        height: auto !important;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 120px 0 var(--spacing-xl);
+      }
+      
+      .hero-bg { display: none; } /* Hide old dark bg */
+
+      .hero-content {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+        align-items: center;
+        width: 100%;
+        /* Override previous max-width centering */
+        max-width: 1400px; 
+        color: var(--color-teal) !important; /* Switch text to dark */
+        padding-top: 0 !important;
+      }
+
+      .hero-text {
+        text-align: center;
+        order: 2; /* Text below video on mobile? Or above? Let's keep text top on mobile usually, but visual is nice. Let's do Text 1, Video 2 on mobile to greet them. */
+        order: 1;
+      }
+      
+      .hero-text .hero-title {
+        color: var(--color-teal);
+        font-size: 3.5rem; /* Smaller on mobile */
+      }
+
+      .hero-text .hero-subtitle {
+        color: var(--color-text-light);
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-visual {
+        order: 2;
+        display: flex;
+        justify-content: center;
+      }
+
+      .video-frame {
+        position: relative;
+        width: 100%;
+        max-width: 320px; /* Slightly smaller for mobile hero */
+        aspect-ratio: 9/16;
+        border-radius: 999px 999px 0 0; /* Full arch */
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(2, 67, 61, 0.15);
+        transform: translateZ(0);
+      }
+
+      .video-frame video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      /* Desktop Split Layout */
+      @media (min-width: 900px) {
+        .hero {
+          height: 100vh !important;
+          padding: 0;
+        }
+
+        .hero-content {
+          grid-template-columns: 1.2fr 1fr; /* Text wider than video */
+          gap: var(--spacing-xl);
+          text-align: left;
+        }
+
+        .hero-text {
+          text-align: left;
+        }
+
+        .hero-text .hero-title {
+          font-size: 5.5rem;
+        }
+        
+        .hero-text .hero-subtitle {
+          margin-left: 0;
+          margin-right: 0;
+          font-size: 1.25rem;
+        }
+
+        .hero-visual {
+          justify-content: flex-end;
+          padding-right: var(--spacing-md);
+        }
+
+        .video-frame {
+          max-width: 400px;
+          height: 80vh; /* Tall arch */
+          max-height: 700px;
+        }
+      }
+    </style>
   </head>
   <body>
     <header class="site-header">
@@ -44,19 +150,29 @@
     <main>
       <!-- Hero Section -->
       <section class="hero">
-        <div class="hero-bg"></div>
+        <!-- Background removed -->
         <div class="container hero-content">
-          <h1 class="hero-title">
-            For People Who <i>Take Care</i> of Themselves
-          </h1>
-          <p class="hero-subtitle">
-            A space for intentional living. Where movement, recovery, and
-            nourishment come together to help you find your center.
-          </p>
-          <div class="hero-actions">
-            <a href="#our-space" class="btn btn-primary"
-              >Discover The Sanctuary</a
-            >
+          <div class="hero-text">
+            <h1 class="hero-title">
+              For People Who <i>Take Care</i> of Themselves
+            </h1>
+            <p class="hero-subtitle">
+              A space for intentional living. Where movement, recovery, and
+              nourishment come together to help you find your center.
+            </p>
+            <div class="hero-actions">
+              <a href="#our-space" class="btn btn-primary"
+                >Discover The Sanctuary</a
+              >
+            </div>
+          </div>
+          
+          <div class="hero-visual">
+            <div class="video-frame">
+              <video autoplay muted loop playsinline poster="assets/Images/video-poster.jpg">
+                <source src="assets/video/teaser.M4V" type="video/mp4" />
+              </video>
+            </div>
           </div>
         </div>
       </section>
