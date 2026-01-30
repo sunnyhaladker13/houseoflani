@@ -34,23 +34,22 @@
         left: 0;
         width: 100%;
         height: 100%;
-        /* Placeholder for your Video Still */
+        /* Unsplash Original Image */
         background:
-          radial-gradient(
-            circle at center,
-            rgba(2, 67, 61, 0.2),
-            rgba(2, 67, 61, 0.6)
-          ),
-          url("assets/Images/hero-still.jpg") no-repeat center center/cover;
-        /* Fallback if image missing */
-        background-color: #02433d;
+          linear-gradient(rgba(2, 67, 61, 0.4), rgba(2, 67, 61, 0.3)),
+          url("https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?q=80&w=2069&auto=format&fit=crop")
+            no-repeat center center/cover;
         z-index: -1;
-        transition: transform 8s ease;
+        animation: zoomSlow 20s infinite alternate;
       }
 
-      /* Subtle zoom effect on the background */
-      .hero:hover .hero-bg {
-        transform: scale(1.05);
+      @keyframes zoomSlow {
+        from {
+          transform: scale(1);
+        }
+        to {
+          transform: scale(1.05);
+        }
       }
 
       .hero-content {
@@ -111,37 +110,95 @@
         }
       }
 
-      /* Watch Film Button Style */
-      .btn-play {
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        color: var(--color-white);
-        border-color: rgba(255, 255, 255, 0.4);
-        padding-left: 2rem;
-        padding-right: 2rem;
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(5px);
+      /* --- Floating Video Widget Styles --- */
+      .video-widget {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 100px;
+        height: 140px;
+        z-index: 998; /* Below modal date/nav but above content */
+        cursor: pointer;
+        border-radius: 60px; /* Pill shape */
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        animation: floatWidget 6s ease-in-out infinite;
       }
 
-      .btn-play:hover {
-        background: var(--color-white);
-        color: var(--color-teal);
-        border-color: var(--color-white);
+      .video-widget:hover {
+        transform: scale(1.05); /* Slight grow on hover */
       }
 
-      .btn-play svg {
-        width: 14px;
-        height: 14px;
-        fill: currentColor;
-        transition: transform 0.3s ease;
+      .video-widget video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
 
-      .btn-play:hover svg {
-        transform: scale(1.2);
+      .video-widget-label {
+        position: absolute;
+        bottom: 12px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        color: white;
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+        z-index: 2;
+        pointer-events: none;
       }
 
-      /* --- PORTAL VIDEO MODAL --- */
+      /* Gradient overlay for text readability */
+      .video-widget::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      @keyframes floatWidget {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      /* On mobile, keep it as a mini-pill so video content is visible */
+      @media (max-width: 600px) {
+        .video-widget {
+          bottom: 20px;
+          right: 20px;
+          width: 80px;
+          height: 110px; /* Portrait mini */
+          border-radius: 40px;
+        }
+
+        .video-widget-label {
+          font-size: 0.6rem;
+          letter-spacing: 0.5px;
+          bottom: 10px;
+        }
+
+        /* Remove the circle play icon override */
+        .video-widget::before {
+          display: none;
+        }
+      }
+
+      /* --- PORTAL VIDEO MODAL (Reused) --- */
       .video-modal {
         position: fixed;
         top: 0;
@@ -152,13 +209,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
-
-        /* Hidden State */
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-
-        /* Frosted Glass Backdrop */
         background-color: rgba(2, 67, 61, 0.85);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
@@ -169,7 +222,6 @@
         pointer-events: all;
       }
 
-      /* The Close Button */
       .video-modal-close {
         position: absolute;
         top: 40px;
@@ -200,7 +252,6 @@
         color: #fff;
       }
 
-      /* The Portal Window (Container) */
       .video-modal-content {
         position: relative;
         width: 100%;
@@ -208,16 +259,11 @@
         height: auto;
         aspect-ratio: 9/16;
         max-height: 80vh; /* Cap height to viewport */
-
-        /* The Sanctuary Arch Shape */
         border-radius: 200px 200px 0 0;
         overflow: hidden;
-
-        /* Entrance Animation */
         transform: translateY(60px) scale(0.95);
         opacity: 0;
         transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-
         box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
         border: 1px solid rgba(255, 255, 255, 0.1);
       }
@@ -243,6 +289,14 @@
     </style>
   </head>
   <body>
+    <!-- Floating Video Widget -->
+    <div class="video-widget" onclick="toggleModal()">
+      <video autoplay muted loop playsinline>
+        <source src="assets/video/teaser.M4V" type="video/mp4" />
+      </video>
+      <span class="video-widget-label">Teaser</span>
+    </div>
+
     <header class="site-header">
       <div class="container header-inner">
         <a href="#" class="logo">
@@ -267,7 +321,7 @@
     </header>
 
     <main>
-      <!-- Hero Section (Classic + Modal) -->
+      <!-- Hero Section (Variant: Regular Image, No Button) -->
       <section class="hero">
         <div class="hero-bg"></div>
         <div class="container hero-content">
@@ -282,21 +336,11 @@
             <a href="#our-space" class="btn btn-primary"
               >Discover The Sanctuary</a
             >
-
-            <!-- Watch Teaser Button (Triggers Portal) -->
-            <button
-              class="btn btn-outline btn-play"
-              onclick="toggleModal()"
-              aria-label="Watch the film"
-            >
-              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-              Watch Film
-            </button>
           </div>
         </div>
       </section>
 
-      <!-- Video Portal Modal -->
+      <!-- Video Portal Modal (Reused) -->
       <div class="video-modal" id="videoModal">
         <button class="video-modal-close" onclick="toggleModal()">Close</button>
         <div class="video-modal-content">
@@ -396,7 +440,7 @@
                   by focusing on control, alignment, and breath. Designed to
                   build deep core strength, improve posture, increase mobility,
                   aid rehabilitation and support both everyday movement and
-                  athletic performance. Let's move the body in a balanced,
+                  athletic performance. Let’s move the body in a balanced,
                   precise and intentional way.
                 </p>
                 <a href="#" class="btn btn-outline">Book Pilates</a>
@@ -436,9 +480,9 @@
                 <p>
                   Pickleball, but make it social. Fast rallies, easy rules, lots
                   of laughs. Come for the movement, stay for the people. Whether
-                  you're new or a pro, our courts are made for connection,
+                  you’re new or a pro, our courts are made for connection,
                   friendly competition, and feel-good energy. At Lani,
-                  pickleball isn't just a game—it's how we come together.
+                  pickleball isn’t just a game—it’s how we come together.
                 </p>
                 <a href="#" class="btn btn-outline">Reserve Court</a>
               </div>
@@ -447,16 +491,13 @@
             <!-- Recovery -->
             <article class="offering-item offering-item--reverse">
               <div class="offering-image">
-                <img
-                  src="https://images.unsplash.com/photo-1544367563-12123d8966bf?auto=format&fit=crop&q=80"
-                  alt="Recovery Therapy"
-                />
+                <img src="assets/Images/recovery.JPG" alt="Recovery Therapy" />
               </div>
               <div class="offering-content">
                 <span class="offering-number">04</span>
                 <h3 class="offering-title">Recovery</h3>
                 <p>
-                  Recovery is where the real progress happens. It's the reset
+                  Recovery is where the real progress happens. It’s the reset
                   your body needs after movement, stress, and everyday life.
                   Through targeted therapy, we help reduce soreness, improve
                   circulation, and support faster muscle repair—so you can move
