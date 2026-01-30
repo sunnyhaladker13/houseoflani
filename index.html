@@ -35,14 +35,19 @@
         width: 100%;
         height: 100%;
         /* Placeholder for your Video Still */
-        background: radial-gradient(circle at center, rgba(2, 67, 61, 0.2), rgba(2, 67, 61, 0.6)),
+        background:
+          radial-gradient(
+            circle at center,
+            rgba(2, 67, 61, 0.2),
+            rgba(2, 67, 61, 0.6)
+          ),
           url("assets/Images/hero-still.jpg") no-repeat center center/cover;
         /* Fallback if image missing */
-        background-color: #02433d; 
+        background-color: #02433d;
         z-index: -1;
         transition: transform 8s ease;
       }
-      
+
       /* Subtle zoom effect on the background */
       .hero:hover .hero-bg {
         transform: scale(1.05);
@@ -59,10 +64,10 @@
       .hero-title {
         font-size: 2.75rem; /* Mobile optimized */
         margin-bottom: var(--spacing-md);
-        text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         line-height: 1.1;
       }
-      
+
       /* Tablet + Desktop Title Size */
       @media (min-width: 600px) {
         .hero-title {
@@ -85,7 +90,7 @@
         max-width: 600px;
         margin-left: auto;
         margin-right: auto;
-        text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         padding: 0 1rem; /* Prevent edge touching on mobile */
       }
 
@@ -98,7 +103,7 @@
         flex-wrap: wrap;
         flex-direction: column; /* Stack on mobile */
       }
-      
+
       @media (min-width: 600px) {
         .hero-actions {
           flex-direction: row; /* Row on tablet+ */
@@ -112,10 +117,10 @@
         align-items: center;
         gap: 12px;
         color: var(--color-white);
-        border-color: rgba(255,255,255,0.4);
+        border-color: rgba(255, 255, 255, 0.4);
         padding-left: 2rem;
         padding-right: 2rem;
-        background: rgba(255,255,255,0.05);
+        background: rgba(255, 255, 255, 0.05);
         backdrop-filter: blur(5px);
       }
 
@@ -131,7 +136,7 @@
         fill: currentColor;
         transition: transform 0.3s ease;
       }
-      
+
       .btn-play:hover svg {
         transform: scale(1.2);
       }
@@ -147,14 +152,14 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        
+
         /* Hidden State */
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        
+
         /* Frosted Glass Backdrop */
-        background-color: rgba(2, 67, 61, 0.85); 
+        background-color: rgba(2, 67, 61, 0.85);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
       }
@@ -171,7 +176,7 @@
         right: 40px;
         background: none;
         border: none;
-        color: rgba(255,255,255,0.7);
+        color: rgba(255, 255, 255, 0.7);
         font-family: var(--font-body);
         text-transform: uppercase;
         letter-spacing: 2px;
@@ -183,9 +188,9 @@
         align-items: center;
         gap: 10px;
       }
-      
+
       .video-modal-close::after {
-        content: '×';
+        content: "×";
         font-size: 2rem;
         line-height: 0.5;
         display: block;
@@ -203,25 +208,25 @@
         height: auto;
         aspect-ratio: 9/16;
         max-height: 80vh; /* Cap height to viewport */
-        
+
         /* The Sanctuary Arch Shape */
         border-radius: 200px 200px 0 0;
         overflow: hidden;
-        
+
         /* Entrance Animation */
         transform: translateY(60px) scale(0.95);
         opacity: 0;
         transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-        
-        box-shadow: 0 40px 80px rgba(0,0,0,0.5);
-        border: 1px solid rgba(255,255,255,0.1);
+
+        box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.1);
       }
-      
+
       @media (min-width: 600px) {
         .video-modal-content {
-           max-width: 50vh; /* Restore portrait sizing logic for larger screens */
-           height: 85vh;
-           border-radius: 500px 500px 0 0;
+          max-width: 50vh; /* Restore portrait sizing logic for larger screens */
+          height: 85vh;
+          border-radius: 500px 500px 0 0;
         }
       }
 
@@ -274,11 +279,17 @@
             nourishment come together to help you find your center.
           </p>
           <div class="hero-actions">
-            <a href="#our-space" class="btn btn-primary">Discover The Sanctuary</a>
-            
+            <a href="#our-space" class="btn btn-primary"
+              >Discover The Sanctuary</a
+            >
+
             <!-- Watch Teaser Button (Triggers Portal) -->
-            <button class="btn btn-outline btn-play" onclick="toggleModal()" aria-label="Watch the film">
-              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <button
+              class="btn btn-outline btn-play"
+              onclick="toggleModal()"
+              aria-label="Watch the film"
+            >
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
               Watch Film
             </button>
           </div>
@@ -297,12 +308,12 @@
 
       <script>
         function toggleModal() {
-          const modal = document.getElementById('videoModal');
-          const video = document.getElementById('modalVideo');
-          
-          modal.classList.toggle('is-active');
-          
-          if (modal.classList.contains('is-active')) {
+          const modal = document.getElementById("videoModal");
+          const video = document.getElementById("modalVideo");
+
+          modal.classList.toggle("is-active");
+
+          if (modal.classList.contains("is-active")) {
             video.currentTime = 0;
             video.play();
           } else {
