@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://api.fontshare.com" />
     <link rel="preconnect" href="https://use.typekit.net" crossorigin />
     <link rel="preconnect" href="https://images.unsplash.com" />
-    
+
     <link rel="stylesheet" href="https://use.typekit.net/cqx1maj.css" />
     <link
       href="https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500,600&display=swap"
@@ -299,6 +299,65 @@
         height: 100%;
         object-fit: cover;
       }
+
+      /* --- BOOKING WIDGET MODAL --- */
+      .booking-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+        background-color: rgba(
+          253,
+          252,
+          248,
+          0.95
+        ); /* Light background for reading */
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+
+      .booking-modal.is-active {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .booking-modal-content {
+        position: relative;
+        width: 90%;
+        max-width: 1000px;
+        height: 80vh;
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        overflow-y: auto;
+        padding: 2rem;
+        transform: translateY(20px);
+        transition: transform 0.4s ease;
+      }
+
+      .booking-modal.is-active .booking-modal-content {
+        transform: translateY(0);
+      }
+
+      .booking-modal-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        cursor: pointer;
+        color: var(--color-teal);
+        z-index: 10;
+      }
     </style>
   </head>
   <body>
@@ -330,7 +389,13 @@
           </ul>
         </nav>
         <div class="header-cta">
-          <a href="#" class="btn btn-primary">Reserve Your Space</a>
+          <button
+            class="btn btn-primary"
+            onclick="toggleBookingModal('class')"
+            type="button"
+          >
+            Book a Class
+          </button>
         </div>
         <button class="mobile-menu-toggle" aria-label="Toggle menu">
           <span></span>
@@ -369,6 +434,61 @@
         </div>
       </div>
 
+      <!-- Booking Modal -->
+      <div class="booking-modal" id="bookingModal">
+        <div class="booking-modal-content">
+          <button class="booking-modal-close" onclick="closeBookingModal()">
+            &times;
+          </button>
+
+          <!-- Pilates Widget Container -->
+          <div id="widget-pilates" class="booking-widget-container">
+            <!-- Mindbody Schedules widget begin -->
+            <div
+              class="mindbody-widget"
+              data-widget-type="Schedules"
+              data-widget-id="a3445352e81"
+            ></div>
+            <!-- Mindbody Schedules widget end -->
+          </div>
+
+          <!-- Yoga Widget Container -->
+          <div
+            id="widget-yoga"
+            class="booking-widget-container"
+            style="display: none"
+          >
+            <!-- Mindbody Schedules widget begin -->
+            <div
+              class="mindbody-widget"
+              data-widget-type="Schedules"
+              data-widget-id="a3445372e81"
+            ></div>
+            <!-- Mindbody Schedules widget end -->
+          </div>
+
+          <!-- Class Widget Container -->
+          <div
+            id="widget-class"
+            class="booking-widget-container"
+            style="display: none"
+          >
+            <!-- Mindbody Schedules widget begin -->
+            <div
+              class="mindbody-widget"
+              data-widget-type="Schedules"
+              data-widget-id="a3442902e81"
+            ></div>
+            <!-- Mindbody Schedules widget end -->
+          </div>
+
+          <script
+            async
+            src="https://brandedweb.mindbodyonline.com/embed/widget.js"
+          ></script>
+        </div>
+      </div>
+
       <script>
         function toggleModal() {
           const modal = document.getElementById("videoModal");
@@ -382,6 +502,33 @@
           } else {
             video.pause();
           }
+        }
+
+        function toggleBookingModal(type) {
+          const modal = document.getElementById("bookingModal");
+          const pilatesWidget = document.getElementById("widget-pilates");
+          const yogaWidget = document.getElementById("widget-yoga");
+          const classWidget = document.getElementById("widget-class");
+
+          // Hide all first
+          if (pilatesWidget) pilatesWidget.style.display = "none";
+          if (yogaWidget) yogaWidget.style.display = "none";
+          if (classWidget) classWidget.style.display = "none";
+
+          // Show requested
+          if (type === "pilates" && pilatesWidget) {
+            pilatesWidget.style.display = "block";
+          } else if (type === "yoga" && yogaWidget) {
+            yogaWidget.style.display = "block";
+          } else if (type === "class" && classWidget) {
+            classWidget.style.display = "block";
+          }
+
+          modal.classList.add("is-active");
+        }
+
+        function closeBookingModal() {
+          document.getElementById("bookingModal").classList.remove("is-active");
         }
       </script>
 
@@ -465,7 +612,13 @@
                   athletic performance. Let’s move the body in a balanced,
                   precise and intentional way.
                 </p>
-                <a href="#" class="btn btn-outline">Book Pilates</a>
+                <button
+                  class="btn btn-outline"
+                  onclick="toggleBookingModal('pilates')"
+                  type="button"
+                >
+                  Book Pilates
+                </button>
               </div>
             </article>
 
@@ -490,7 +643,13 @@
                   Accessible to all levels, yoga meets you where you are,
                   offering a sense of calm that extends beyond the mat.
                 </p>
-                <a href="#" class="btn btn-outline">Book Yoga</a>
+                <button
+                  class="btn btn-outline"
+                  onclick="toggleBookingModal('yoga')"
+                  type="button"
+                >
+                  Book Yoga
+                </button>
               </div>
             </article>
 
@@ -544,7 +703,7 @@
               </div>
             </article>
 
-            <!-- Nourishment -->
+            <!-- Nourishment (Hidden)
             <article class="offering-item">
               <div class="offering-image">
                 <img
@@ -567,6 +726,7 @@
                 <a href="#" class="btn btn-outline">View Menu</a>
               </div>
             </article>
+            -->
           </div>
         </div>
       </section>
@@ -582,7 +742,13 @@
             </p>
             <div class="cta-group">
               <a href="#" class="btn btn-primary">View Memberships</a>
-              <a href="#" class="btn btn-outline">Book a Class</a>
+              <button
+                class="btn btn-outline"
+                onclick="toggleBookingModal('class')"
+                type="button"
+              >
+                Book a Class
+              </button>
             </div>
           </div>
         </div>
