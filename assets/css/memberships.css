@@ -32,6 +32,7 @@
 
 /* Tabs */
 .tabs-container {
+  position: relative;
   display: flex;
   justify-content: center;
   gap: 1rem;
@@ -91,6 +92,42 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Mobile Optimized Tabs */
+@media (max-width: 768px) {
+  .tabs-container {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0;
+    margin-bottom: 2rem;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+    gap: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-bottom: 1px solid rgba(2, 67, 61, 0.1); /* Ensure border spans full width */
+    width: 100%; /* Ensure container takes full width */
+    box-sizing: border-box; /* Include padding in width */
+  }
+
+  .tabs-container::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+
+  .tab-btn {
+    flex-shrink: 0;
+    white-space: nowrap;
+    padding-bottom: 0.8rem; /* Use padding for bottom spacing */
+    margin-bottom: -1px; /* Align active border with container border */
+  }
+
+  .tab-btn.active::after {
+    bottom: 0;
+    height: 3px; /* Slightly thicker on mobile */
   }
 }
 

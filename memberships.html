@@ -44,7 +44,7 @@
             <li><a href="memberships.html" class="active">Memberships</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
-          <div class="mobile-cta" style="display: none;">
+          <div class="mobile-cta" style="display: none">
             <a
               href="https://clients.mindbodyonline.com/classic/ws?studioid=5750997&stype=-2&subTab=schedule"
               class="btn btn-outline"
@@ -492,6 +492,8 @@
 
     <script>
       // Tab Switching Logic
+      const tabsContainer = document.querySelector(".tabs-container");
+
       document.querySelectorAll(".tab-btn").forEach((button) => {
         button.addEventListener("click", () => {
           // Remove active class from all buttons and contents
@@ -506,6 +508,18 @@
           button.classList.add("active");
           const targetId = button.getAttribute("data-target");
           document.getElementById(targetId).classList.add("active");
+
+          // Scroll active tab into view - especially important on mobile
+          if (tabsContainer && window.innerWidth <= 768) {
+            const scrollLeft =
+              button.offsetLeft -
+              tabsContainer.offsetWidth / 2 +
+              button.offsetWidth / 2;
+            tabsContainer.scrollTo({
+              left: scrollLeft,
+              behavior: "smooth",
+            });
+          }
         });
       });
 
