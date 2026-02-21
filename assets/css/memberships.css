@@ -1,0 +1,346 @@
+/* Memberships Page Styles */
+
+.memberships-page {
+  padding-top: 100px; /* Offset for fixed header */
+}
+
+.memberships-hero {
+  background-color: var(--color-bg-light);
+  padding-bottom: var(--spacing-md);
+}
+
+.memberships-hero .overline {
+  display: block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-sage);
+  margin-bottom: 1rem;
+}
+
+.memberships-hero .section-title {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.memberships-hero .lead-text {
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  color: var(--color-text-light);
+}
+
+/* Tabs */
+.tabs-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: var(--spacing-lg);
+  flex-wrap: wrap;
+  border-bottom: 1px solid rgba(2, 67, 61, 0.1);
+  padding-bottom: 1rem;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-text-light);
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  position: relative;
+  transition: color 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.tab-btn:hover {
+  color: var(--color-teal);
+}
+
+.tab-btn.active {
+  color: var(--color-teal);
+  font-weight: 500;
+}
+
+.tab-btn.active::after {
+  content: "";
+  position: absolute;
+  bottom: -1rem;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-teal);
+}
+
+.tab-content {
+  display: none;
+  animation: fadeIn 0.5s ease;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Plans Grid */
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.plan-card {
+  background-color: var(--color-white);
+  border: 1px solid rgba(2, 67, 61, 0.1);
+  border-radius: var(--radius-md);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  position: relative;
+}
+
+.plan-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(2, 67, 61, 0.05);
+}
+
+.plan-card.featured {
+  border-color: var(--color-teal);
+  box-shadow: 0 10px 20px rgba(2, 67, 61, 0.05);
+}
+
+.plan-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--color-teal);
+  color: var(--color-white);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.plan-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-heading);
+}
+
+.plan-subtitle {
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  margin-bottom: 1rem;
+}
+
+.plan-price {
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: var(--color-teal);
+  margin-bottom: 1.5rem;
+  font-family: var(--font-heading);
+}
+
+.plan-price span {
+  font-size: 1rem;
+  color: var(--color-text-light);
+  font-family: var(--font-body);
+}
+
+.plan-features {
+  margin-bottom: 2rem;
+  flex-grow: 1;
+}
+
+.plan-features li {
+  margin-bottom: 0.8rem;
+  padding-left: 1.5rem;
+  position: relative;
+  font-size: 0.95rem;
+  color: var(--color-text-light);
+}
+
+.plan-features li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--color-sage);
+}
+
+.plan-btn {
+  width: 100%;
+  text-align: center;
+}
+
+/* Payment Modal */
+.payment-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  background-color: rgba(253, 252, 248, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.payment-modal.is-active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.payment-modal-content {
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  padding: 3rem 2rem;
+  transform: translateY(20px);
+  transition: transform 0.4s ease;
+  text-align: center;
+}
+
+.payment-modal.is-active .payment-modal-content {
+  transform: translateY(0);
+}
+
+.payment-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--color-teal);
+  z-index: 10;
+  line-height: 1;
+}
+
+.payment-title {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.payment-plan-name {
+  color: var(--color-text-light);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.payment-amount {
+  font-size: 2.5rem;
+  font-family: var(--font-heading);
+  color: var(--color-teal);
+  margin-bottom: 2rem;
+}
+
+.qr-container {
+  background-color: var(--color-bg-light);
+  padding: 2rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 2rem;
+  display: inline-block;
+  border: 1px solid rgba(2, 67, 61, 0.05);
+}
+
+.qr-image {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 1rem;
+  display: block;
+}
+
+.upi-id {
+  font-size: 1.1rem;
+  color: var(--color-teal);
+  margin: 0;
+}
+
+.payment-instructions {
+  text-align: left;
+  margin-bottom: 2rem;
+  background-color: rgba(104, 153, 136, 0.05);
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+}
+
+.payment-instructions p {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--color-text-main);
+}
+
+.payment-instructions p:last-child {
+  margin-bottom: 0;
+}
+
+.whatsapp-btn {
+  width: 100%;
+  background-color: #25d366; /* WhatsApp Green */
+  border-color: #25d366;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.whatsapp-btn:hover {
+  background-color: #128c7e;
+  border-color: #128c7e;
+  color: white;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .memberships-hero .section-title {
+    font-size: 2.5rem;
+  }
+
+  .tabs-container {
+    gap: 0.5rem;
+  }
+
+  .tab-btn {
+    font-size: 0.85rem;
+    padding: 0.5rem;
+  }
+
+  .payment-modal-content {
+    padding: 2rem 1.5rem;
+  }
+
+  .qr-image {
+    width: 150px;
+    height: 150px;
+  }
+}
