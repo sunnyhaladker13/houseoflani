@@ -198,7 +198,9 @@ img {
 }
 
 .header-cta {
-  display: block;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 }
 
 .mobile-menu-toggle {
@@ -771,6 +773,27 @@ img {
     font-family: var(--font-heading);
     text-transform: none;
     font-style: italic;
+  }
+
+  .main-nav .mobile-cta {
+    display: flex !important;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+    align-items: center;
+  }
+
+  .main-nav .mobile-cta a,
+  .main-nav .mobile-cta button {
+    font-size: 0.75rem;
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    font-style: normal;
+    letter-spacing: 2px;
+  }
+
+  .main-nav .mobile-cta a::after {
+    display: none;
   }
 
   /* Values */
