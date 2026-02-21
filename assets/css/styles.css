@@ -96,19 +96,27 @@ img {
 
 /* Buttons - Minimalist & Exclusive */
 .btn {
-  display: inline-block;
-  padding: 1.2rem 2.5rem;
-  border-radius: 0; /* Sharp corners for luxury, or very slight radius */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
   border-radius: 2px;
   font-family: var(--font-body);
   font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 2px; /* Wide tracking */
+  letter-spacing: 2px;
   font-size: 0.75rem;
   cursor: pointer;
   transition: all 0.4s ease;
   position: relative;
   overflow: hidden;
+  line-height: 1;
+  height: auto;
+  text-decoration: none;
+  border: 1px solid transparent; /* Ensure border box model consistency */
+  appearance: none;
+  -webkit-appearance: none;
+  background: none;
 }
 
 .btn-primary {
