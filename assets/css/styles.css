@@ -736,6 +736,8 @@ img {
   .mobile-menu-toggle {
     display: flex;
     z-index: 1002;
+    padding: 10px; /* Increase touch target */
+    margin-right: -10px; /* Align visually despite padding */
   }
 
   .mobile-menu-toggle.active span:first-child {
@@ -747,7 +749,8 @@ img {
   }
 
   .mobile-menu-toggle span {
-    transition: transform 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: center;
   }
 
   .main-nav {
@@ -758,46 +761,70 @@ img {
     height: 100vh;
     background-color: var(--color-bg-light);
     display: flex;
+    flex-direction: column; /* Force column layout */
     align-items: center;
     justify-content: center;
     transform: translateY(-100%);
     transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 1001;
+    padding: 2rem;
   }
 
   .main-nav.active {
-    display: flex;
     transform: translateY(0);
   }
 
   .main-nav ul {
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    justify-content: center;
+    gap: 2.5rem; /* Increased gap */
+    width: 100%;
+    margin-bottom: 3rem; /* Space between links and CTA */
   }
 
   .main-nav a {
-    font-size: 1.5rem;
+    font-size: 2rem; /* Larger font */
     font-family: var(--font-heading);
     text-transform: none;
     font-style: italic;
+    color: var(--color-text-main);
+  }
+
+  /* Remove the underline from links in mobile menu */
+  .main-nav a::after {
+    display: none;
   }
 
   .main-nav .mobile-cta {
     display: flex !important;
     flex-direction: column;
-    gap: 1rem;
-    margin-top: 2rem;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 300px;
     align-items: center;
   }
 
-  .main-nav .mobile-cta a,
-  .main-nav .mobile-cta button {
-    font-size: 0.75rem;
+  .main-nav .mobile-cta .btn {
+    width: 100%; /* Full width buttons */
+    padding: 1.2rem;
+    font-size: 0.9rem;
     font-family: var(--font-body);
-    text-transform: uppercase;
     font-style: normal;
+    text-transform: uppercase;
     letter-spacing: 2px;
+  }
+
+  /* Ensure primary button text is readable */
+  .main-nav .mobile-cta .btn-primary {
+    background-color: var(--color-teal);
+    color: var(--color-white) !important; /* Force white text */
+    border: 1px solid var(--color-teal);
+  }
+
+  .main-nav .mobile-cta .btn-outline {
+    color: var(--color-teal) !important;
+    border-color: var(--color-teal);
   }
 
   .main-nav .mobile-cta a::after {
