@@ -166,6 +166,13 @@ img {
   transition: opacity 0.3s ease;
 }
 
+/* enlarge logo on phones where it felt too small */
+@media (max-width: 600px) {
+  .logo {
+    width: 140px; /* increase for mobile */
+  }
+}
+
 .logo:hover {
   opacity: 0.8;
 }
@@ -726,7 +733,7 @@ img {
   }
 
   .logo {
-    width: 25px;
+    width: 50px;
   }
 
   .header-cta {
