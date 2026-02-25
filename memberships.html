@@ -110,7 +110,8 @@
           </button>
           <button class="tab-btn" data-target="yoga">Yoga</button>
           <button class="tab-btn" data-target="combos">Combos</button>
-          <button class="tab-btn" data-target="recovery">Recovery</button>
+          <button class="tab-btn" data-target="red-light-therapy">Red Light Therapy</button>
+          <button class="tab-btn" data-target="compression-therapy">Compression Therapy</button>
           <button class="tab-btn" data-target="pickleball">Pickleball</button>
         </div>
 
@@ -124,7 +125,8 @@
                 <li>1 Pilates session</li>
                 <li>Access to amenities</li>
               </ul>
-              <button class="btn btn-outline plan-btn" onclick="openPaymentModal('Pilates Single Session', '1500')">
+              <button class="btn btn-outline plan-btn"
+                onclick="openPaymentModal('Pilates Single Session', '1500', 'pilates-single-session')">
                 Select Plan
               </button>
             </div>
@@ -140,6 +142,7 @@
                     openPaymentModal(
                       'Pilates Monthly Plan (8 sessions)',
                       '11200',
+                      'pilates-monthly',
                     )
                   ">
                 Select Plan
@@ -156,6 +159,7 @@
                     openPaymentModal(
                       'Pilates Monthly Plan Plus (12 sessions)',
                       '15600',
+                      'pilates-monthly-plus',
                     )
                   ">
                 Select Plan
@@ -173,6 +177,7 @@
                     openPaymentModal(
                       'Pilates Extended Plan (24 sessions)',
                       '26400',
+                      'pilates-extended',
                     )
                   ">
                 Select Plan
@@ -190,7 +195,8 @@
                 <li>1 Yoga session</li>
                 <li>Access to amenities</li>
               </ul>
-              <button class="btn btn-outline plan-btn" onclick="openPaymentModal('Yoga Single Session', '800')">
+              <button class="btn btn-outline plan-btn"
+                onclick="openPaymentModal('Yoga Single Session', '800', 'yoga-single-session')">
                 Select Plan
               </button>
             </div>
@@ -203,7 +209,7 @@
                 <li>Access to amenities</li>
               </ul>
               <button class="btn btn-primary plan-btn" onclick="
-                    openPaymentModal('Yoga Monthly Plan (12 sessions)', '8400')
+                    openPaymentModal('Yoga Monthly Plan (12 sessions)', '8400', 'yoga-monthly')
                   ">
                 Select Plan
               </button>
@@ -219,6 +225,7 @@
                     openPaymentModal(
                       'Yoga Monthly Plan Plus (20 sessions)',
                       '13000',
+                      'yoga-monthly-plus',
                     )
                   ">
                 Select Plan
@@ -238,7 +245,8 @@
                 <li>Free recovery therapy (2 sessions/week)</li>
                 <li>Free workshop access</li>
               </ul>
-              <button class="btn btn-outline plan-btn" onclick="openPaymentModal('Combo 1 Month Plan', '22800')">
+              <button class="btn btn-outline plan-btn"
+                onclick="openPaymentModal('Combo 1 Month Plan', '22800', 'combo-1-month')">
                 Select Plan
               </button>
             </div>
@@ -253,7 +261,8 @@
                 <li>Free recovery therapy (2 sessions/week)</li>
                 <li>Free workshop access</li>
               </ul>
-              <button class="btn btn-primary plan-btn" onclick="openPaymentModal('Combo 3 Month Plan', '63600')">
+              <button class="btn btn-primary plan-btn"
+                onclick="openPaymentModal('Combo 3 Month Plan', '63600', 'combo-3-month')">
                 Select Plan
               </button>
             </div>
@@ -267,77 +276,109 @@
                 <li>Free recovery therapy (2 sessions/week)</li>
                 <li>Free workshop access</li>
               </ul>
-              <button class="btn btn-outline plan-btn" onclick="openPaymentModal('Combo 6 Month Plan', '100800')">
+              <button class="btn btn-outline plan-btn"
+                onclick="openPaymentModal('Combo 6 Month Plan', '100800', 'combo-6-month')">
                 Select Plan
               </button>
             </div>
           </div>
         </div>
 
-        <div class="tab-content" id="recovery">
+        <div class="tab-content" id="red-light-therapy">
           <div class="plans-grid">
-            <!-- Red Light Therapy -->
             <div class="plan-card">
-              <h3 class="plan-title">Red Light Therapy</h3>
-              <p class="plan-subtitle">30min Single Session</p>
+              <h3 class="plan-title">Single Session</h3>
+              <p class="plan-subtitle">30min Session</p>
               <div class="plan-price">₹1,100</div>
+              <ul class="plan-features">
+                <li>Targeted light therapy</li>
+                <li>Quick recovery</li>
+                <li>Skin health benefits</li>
+              </ul>
               <button class="btn btn-outline plan-btn" onclick="
-                    openPaymentModal('Red Light Therapy (Single)', '1100')
+                    openPaymentModal('Red Light Therapy (Single)', '1100', 'rlt-single')
                   ">
                 Select Plan
               </button>
             </div>
-            <div class="plan-card">
-              <h3 class="plan-title">Red Light Therapy</h3>
-              <p class="plan-subtitle">5 Sessions</p>
+            <div class="plan-card featured">
+              <div class="plan-badge">Most Popular</div>
+              <h3 class="plan-title">5 Sessions</h3>
+              <p class="plan-subtitle">Valid for 2 Months</p>
               <div class="plan-price">₹4,995</div>
-              <button class="btn btn-outline plan-btn" onclick="
-                    openPaymentModal('Red Light Therapy (5 Sessions)', '4995')
+              <ul class="plan-features">
+                <li>Targeted light therapy</li>
+                <li>Quick recovery</li>
+                <li>Skin health benefits</li>
+              </ul>
+              <button class="btn btn-primary plan-btn" onclick="
+                    openPaymentModal('Red Light Therapy (5 Sessions)', '4995', 'rlt-5-sessions')
                   ">
                 Select Plan
               </button>
             </div>
             <div class="plan-card">
-              <h3 class="plan-title">Red Light Therapy</h3>
-              <p class="plan-subtitle">10 Sessions</p>
+              <h3 class="plan-title">10 Sessions</h3>
+              <p class="plan-subtitle">Valid for 3 Months</p>
               <div class="plan-price">₹8,990</div>
+              <ul class="plan-features">
+                <li>Targeted light therapy</li>
+                <li>Quick recovery</li>
+                <li>Skin health benefits</li>
+              </ul>
               <button class="btn btn-outline plan-btn" onclick="
-                    openPaymentModal('Red Light Therapy (10 Sessions)', '8990')
+                    openPaymentModal('Red Light Therapy (10 Sessions)', '8990', 'rlt-10-sessions')
                   ">
                 Select Plan
               </button>
             </div>
+          </div>
+        </div>
 
-            <!-- Compression Therapy -->
+        <div class="tab-content" id="compression-therapy">
+          <div class="plans-grid">
             <div class="plan-card">
-              <h3 class="plan-title">Compression Therapy</h3>
-              <p class="plan-subtitle">20min Single Session</p>
+              <h3 class="plan-title">Single Session</h3>
+              <p class="plan-subtitle">20min Session</p>
               <div class="plan-price">₹1,400</div>
+              <ul class="plan-features">
+                <li>Dynamic air compression</li>
+                <li>Accelerate recovery</li>
+                <li>Reduce muscle fatigue</li>
+              </ul>
               <button class="btn btn-outline plan-btn" onclick="
-                    openPaymentModal('Compression Therapy (Single)', '1400')
+                    openPaymentModal('Compression Therapy (Single)', '1400', 'compression-single')
                   ">
                 Select Plan
               </button>
             </div>
-            <div class="plan-card">
-              <h3 class="plan-title">Compression Therapy</h3>
-              <p class="plan-subtitle">6 Sessions</p>
+            <div class="plan-card featured">
+              <div class="plan-badge">Most Popular</div>
+              <h3 class="plan-title">6 Sessions</h3>
+              <p class="plan-subtitle">Valid for 2 Months</p>
               <div class="plan-price">₹7,195</div>
-              <button class="btn btn-outline plan-btn" onclick="
-                    openPaymentModal('Compression Therapy (6 Sessions)', '7195')
+              <ul class="plan-features">
+                <li>Dynamic air compression</li>
+                <li>Accelerate recovery</li>
+                <li>Reduce muscle fatigue</li>
+              </ul>
+              <button class="btn btn-primary plan-btn" onclick="
+                    openPaymentModal('Compression Therapy (6 Sessions)', '7195', 'compression-6-sessions')
                   ">
                 Select Plan
               </button>
             </div>
             <div class="plan-card">
-              <h3 class="plan-title">Compression Therapy</h3>
-              <p class="plan-subtitle">12 Sessions</p>
+              <h3 class="plan-title">12 Sessions</h3>
+              <p class="plan-subtitle">Valid for 3 Months</p>
               <div class="plan-price">₹11,999</div>
+              <ul class="plan-features">
+                <li>Dynamic air compression</li>
+                <li>Accelerate recovery</li>
+                <li>Reduce muscle fatigue</li>
+              </ul>
               <button class="btn btn-outline plan-btn" onclick="
-                    openPaymentModal(
-                      'Compression Therapy (12 Sessions)',
-                      '11999',
-                    )
+                    openPaymentModal('Compression Therapy (12 Sessions)', '11999', 'compression-12-sessions')
                   ">
                 Select Plan
               </button>
@@ -360,6 +401,7 @@
                     openPaymentModal(
                       'Pickleball Court Booking (1 Hour)',
                       '1600',
+                      'pickleball-court',
                     )
                   ">
                 Select Plan
@@ -383,8 +425,8 @@
         <div class="payment-amount" id="paymentAmount">₹0</div>
 
         <div class="qr-container">
-          <!-- Placeholder QR Code -->
-          <img src="assets/images/upi-qr.png" alt="UPI QR Code" class="qr-image" width="200" height="200" />
+          <img id="modalQrImage" src="assets/images/qr-codes/pilates-single-session.png" alt="UPI QR Code"
+            class="qr-image" width="200" height="200" />
           <p class="upi-id">UPI ID: <strong>8790935353-4@ybl</strong></p>
         </div>
 
@@ -475,7 +517,7 @@
     });
 
     // Payment Modal Logic
-    function openPaymentModal(planName, amount) {
+    function openPaymentModal(planName, amount, qrKey) {
       document.getElementById("paymentPlanName").textContent = planName;
 
       // Format amount with commas
@@ -485,10 +527,12 @@
       document.getElementById("instructionAmount").textContent =
         "₹" + formattedAmount;
 
-      // Update QR code with specific amount (optional, but good for UX)
-      // Static image used, dynamic source update removed
-      // const qrImage = document.querySelector(".qr-image");
-      // qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=8790935353-4@ybl&pn=House%20of%20Lani&am=${amount}&cu=INR`;
+      // Swap QR code image to the plan-specific one
+      const qrImage = document.getElementById("modalQrImage");
+      if (qrKey) {
+        qrImage.src = "assets/images/qr-codes/" + qrKey + ".png";
+        qrImage.alt = "UPI QR Code for " + planName;
+      }
 
       document.getElementById("paymentModal").classList.add("is-active");
       document.body.style.overflow = "hidden"; // Prevent scrolling behind modal
