@@ -384,9 +384,7 @@
 
         <div class="qr-container">
           <!-- Placeholder QR Code -->
-          <img
-            src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=8790935353-4@ybl&pn=House%20of%20Lani&cu=INR"
-            alt="UPI QR Code" class="qr-image" width="200" height="200" />
+          <img src="assets/upi-qr.png" alt="UPI QR Code" class="qr-image" width="200" height="200" />
           <p class="upi-id">UPI ID: <strong>8790935353-4@ybl</strong></p>
         </div>
 
@@ -488,8 +486,9 @@
         "₹" + formattedAmount;
 
       // Update QR code with specific amount (optional, but good for UX)
-      const qrImage = document.querySelector(".qr-image");
-      qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=8790935353-4@ybl&pn=House%20of%20Lani&am=${amount}&cu=INR`;
+      // Static image used, dynamic source update removed
+      // const qrImage = document.querySelector(".qr-image");
+      // qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=8790935353-4@ybl&pn=House%20of%20Lani&am=${amount}&cu=INR`;
 
       document.getElementById("paymentModal").classList.add("is-active");
       document.body.style.overflow = "hidden"; // Prevent scrolling behind modal
